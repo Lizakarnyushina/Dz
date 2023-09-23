@@ -5,5 +5,5 @@ if a > b:
     print('a больше b')
 elif a < b:
     print('b больше a')
-elif a == b:
+else:
     print('Числа равны')
