@@ -1,7 +1,7 @@
 print('Введите число a')
 a = float(input())
 b = int(a)
-if a == b :
+if a == b:
     print('Целое число')
-else :
+else:
     print('Число не является целым')
