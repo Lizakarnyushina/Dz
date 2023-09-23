@@ -1,9 +1,9 @@
 print('Введите числа a, b')
 a = float(input())
 b = float(input())
-if a > b :
+if a > b:
     print('a больше b')
-elif a < b :
+elif a < b:
     print('b больше a')
-else :
+else:
     print('Числа равны')
