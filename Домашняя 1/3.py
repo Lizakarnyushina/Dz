@@ -1,4 +1,5 @@
 import math
+
 print('Введите X, Y, Z')
 X = float(input())
 Y = float(input())
