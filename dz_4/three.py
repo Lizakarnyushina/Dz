@@ -3,4 +3,5 @@ def f(x) -> bool:
     return len(x) == len(set(x))
 
 
-print(f(input().split()))
+if __name__ == "__main__":
+    print(f(input().split()))
