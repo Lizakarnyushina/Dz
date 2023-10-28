@@ -4,4 +4,5 @@ def f(n):
     return n * f(n - 1)
 
 
-print(f(int(input())))
+if __name__ == "__main__":
+    print(f(int(input())))
