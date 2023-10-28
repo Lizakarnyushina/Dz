@@ -7,5 +7,4 @@ def f(pl: list, k: int) -> list:
     return pl[-k:] + pl[:-k]
 
 
-if __name__ == "__main__":
-    print(f(vvod(input()), int(input())))
+print(f(vvod(input()), int(input())))
