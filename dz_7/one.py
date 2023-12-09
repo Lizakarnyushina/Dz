@@ -1,17 +1,19 @@
-from collections import deque
-
-def bfs(graph, start, target):
-    visited = set()
-    queue = deque([(start, 0)])
-
-    while queue:
-        node, distance = queue.popleft()
-        if node == target:
-            return distance
-        if node not in visited:
-            visited.add(node)
-            for neighbor in graph.get(node, []):
-                if neighbor not in visited:
-                    queue.append((neighbor, distance + 1))
-
+from collections import deque 
+ 
+def check(node, t): 
+    return node == t 
+ 
+ 
+def bfs(g, s, t, check): 
+    a = deque([(s, 0)]) 
+    b = set([s]) 
+ 
+    while a: 
+        node, distance = a.popleft() 
+        if check(node, t): 
+            return distance 
+        for neighbor in g.get(node, []): 
+            if neighbor not in b: 
+                a.append((neighbor, distance + 1)) 
+ 
     return None
