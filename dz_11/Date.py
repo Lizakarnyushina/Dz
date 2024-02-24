@@ -3,7 +3,6 @@ class Date:
         self.year = year
         self.month = month
         self.day = day
-        self.output = None
         if not self.validate():
             raise ValueError("Некорректная дата при создании объекта")
  
