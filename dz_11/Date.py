@@ -1,16 +1,35 @@
 class Date:
-    def __init__(self, year, month, day):
+    def __init__(self, year=1, month=1, day=1):
         self.year = year
         self.month = month
         self.day = day
+        self.output = None
 
+    def input_date(self):
+        year, month, day = map(int, input("Введите дату ГГГГ.ММ.ДД: ").split('.'))
+        self.year = year
+        self.month = month
+        self.day = day
+        
+
+    def __str__(self):
+        return f"{self.year}.{self.month}.{self.day}"
     
-    def input_date(cls):
-        year = int(input("Введите год: "))
-        month = int(input("Введите месяц: "))
-        day = int(input("Введите день: "))
-        return cls(year, month, day)
+    def validate(self):
+        if self.year < 1 or self.month < 1 or self.month > 12 or self.day < 1:
+            return False
+        
+        if self.month in [1, 3, 5, 7, 8, 10, 12]:
+            max_day = 31
+        elif self.month in [4, 6, 9, 11]:
+            max_day = 30
+        else:
+            if (self.year % 4 == 0 and self.year % 100 != 0) or (self.year % 400 == 0):
+                max_day = 29
+            else:
+                max_day = 28
 
-
-    def display_date(self):
-        print("Дата: {self.day}.{self.month}.{self.year}")
+        if self.day > max_day:
+            return False
+        
+        return True
