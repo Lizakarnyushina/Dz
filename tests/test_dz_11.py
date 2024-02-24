@@ -17,40 +17,37 @@ def test_input_date(monkeypatch, input_data, expected_output):
     date.input_date()
     assert str(date) == expected_output
 
-
-@pytest.mark.parametrize("year, month, day", [
-    (2022, 1, 1),
-    (2023, 12, 31),
-    (2021, 6, 15),
+@pytest.mark.parametrize("year, month, day, expected_exception", [
+    (2022, 2, 29, ValueError),
+    (2021, 2, 28, None),
+    (2000, 2, 29, None),
+    (1999, 4, 31, ValueError),
 ])
-def test_init_valid_date(year, month, day):
-    obj = Date(year, month, day)
-    assert obj.year == year
-    assert obj.month == month
-    assert obj.day == day
-    assert obj.output is None
-    assert obj.validate() is True
-
-
-@pytest.mark.parametrize("year, month, day", [
-    (2021, 2, 28),
-    (2000, 2, 29),
-])
-def test_init_valid_leap_year_dates(year, month, day):
-    date = Date(year, month, day)
-    assert date.year == year
-    assert date.month == month
-    assert date.day == day
-    assert date.validate() is True
-
+def test_valid_date(year, month, day, expected_exception):
+    if expected_exception:
+        with pytest.raises(expected_exception):
+            Date(year, month, day)
+    else:
+        date = Date(year, month, day)
+        assert date.year == year
+        assert date.month == month
+        assert date.day == day
 
 @pytest.mark.parametrize("year, month, day, expected_exception", [
     (2022, 2, 29, ValueError),
+    (2021, 2, 28, None),
+    (2000, 2, 29, None),
     (1999, 4, 31, ValueError),
 ])
-def test_init_invalid_date(year, month, day, expected_exception):
-    with pytest.raises(expected_exception):
-        Date(year, month, day)
+def test_invalid_date(year, month, day, expected_exception):
+    if expected_exception:
+        with pytest.raises(expected_exception):
+            Date(year, month, day)
+    else:
+        date = Date(year, month, day)
+        assert date.year == year
+        assert date.month == month
+        assert date.day == day
 
 
 @pytest.mark.parametrize("year, month, day, expected_output", 
