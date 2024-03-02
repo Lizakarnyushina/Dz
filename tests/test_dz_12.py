@@ -1,6 +1,6 @@
 import pytest
 from datetime import datetime
-from dz_12.DataStamp import DateStamp
+from dz_11.datastamp import DateStamp
 
 
 @pytest.mark.parametrize("day, month, year", [
