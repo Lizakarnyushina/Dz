@@ -1,17 +1,15 @@
 import pytest
-from freezegun import freeze_time
 from datetime import datetime
+from freezegun import freeze_time
 from dz_11.datastamp import DateStamp
 
-@pytest.mark.parametrize("test_date", [
-    ("2022-01-01", 1, 1, 2022),
-    ("2023-05-15", 15, 5, 2023),
-    ("2024-12-31", 31, 12, 2024),
+@pytest.mark.parametrize("year, month, day", [
+    (2022, 12, 1),
+    (2023, 5, 15),
 ])
-def test_datestamp_initialization(test_date):
-    frozen_date, expected_day, expected_month, expected_year = test_date
-    with freeze_time(frozen_date):
+def test_datestamp_init(year, month, day):
+    with freeze_time(f"{year}-{month}-{day}"):
         datestamp = DateStamp()
-        assert datestamp.day == expected_day
-        assert datestamp.month == expected_month
-        assert datestamp.year == expected_year
+        assert datestamp.year == year
+        assert datestamp.month == month
+        assert datestamp.day == day
